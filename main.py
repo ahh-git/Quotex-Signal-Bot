@@ -203,21 +203,20 @@ fig.add_trace(go.Candlestick(
     name="Price"
 ))
 
-# Bollinger Bands
-fig.add_trace(go.Scatter(x=processed_data.index, y=processed_data['BBU_20_2.0'], line=dict(color='gray', width=1, dash='dot'), name='Upper Band'))
-fig.add_trace(go.Scatter(x=processed_data.index, y=processed_data['BBL_20_2.0'], line=dict(color='gray', width=1, dash='dot'), name='Lower Band'))
+# Bollinger Bands (Updated names)
+fig.add_trace(go.Scatter(
+    x=processed_data.index, 
+    y=processed_data['UpperBB'], # Changed from BBU_20_2.0
+    line=dict(color='gray', width=1, dash='dot'), 
+    name='Upper Band'
+))
 
-# EMA
-fig.add_trace(go.Scatter(x=processed_data.index, y=processed_data['EMA_50'], line=dict(color='orange', width=2), name='EMA 50'))
-
-fig.update_layout(
-    height=500,
-    template="plotly_dark",
-    paper_bgcolor="#15202b",
-    plot_bgcolor="#15202b",
-    margin=dict(l=0,r=0,t=0,b=0),
-    xaxis_rangeslider_visible=False
-)
+fig.add_trace(go.Scatter(
+    x=processed_data.index, 
+    y=processed_data['LowerBB'], # Changed from BBL_20_2.0
+    line=dict(color='gray', width=1, dash='dot'), 
+    name='Lower Band'
+))
 
 st.plotly_chart(fig, use_container_width=True)
 
